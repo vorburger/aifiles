@@ -2,6 +2,9 @@
 
 This is an 🤵 Agentic AI Assistant that's working for [🧔‍♂️ Michael Vorburger.ch](https://www.vorburger.ch)...yeah, for real!
 
+So these are my personal `aifiles` (a bit like [`dotfiles`](https://github.com/vorburger/vorburger-dotfiles-bin-etc),
+but for LLMs, instead of UNIX tools' configurations); see [this blog article](https://github.com/vorburger/vorburger.ch-Notes/blob/develop/ml/vorburger-ai-git-memory.md).
+
 ## Documentation ℹ️
 
 See <!-- TODO https://ai.vorburger.ch, built from --> [`docs/`](docs/).
