@@ -5,8 +5,8 @@
 These are the personal `aifiles` of [🧔‍♂️ Michael Vorburger.ch](https://www.vorburger.ch).
 
 `aifiles` are like [`dotfiles`](https://github.com/vorburger/vorburger-dotfiles-bin-etc),
-but for LLMs, instead of UNIX tools' configurations;
-see [this blog article](https://github.com/vorburger/vorburger.ch-Notes/blob/develop/ml/vorburger-ai-git-memory.md)).
+just but for LLMs instead of UNIX tools' configurations;
+see [this blog article](https://github.com/vorburger/vorburger.ch-Notes/blob/develop/ml/vorburger-ai-git-memory.md).
 
 ## Documentation ℹ️
 
