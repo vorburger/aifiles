@@ -6,6 +6,10 @@
 - Determine a project's Java language level, based on build tool settings, or existing usages.
 - Use Java 25 syntax and API language features, when a project is already using Java 25.
 
+## Syntax
+
+- Use [pattern-matching `instanceof`](https://errorprone.info/bugpattern/PatternMatchingInstanceof) when possible
+
 ## Structure
 
 - Name unused variables `_` instead of `unused`
