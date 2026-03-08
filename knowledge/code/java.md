@@ -9,6 +9,15 @@
 ## Syntax
 
 - Use [pattern-matching `instanceof`](https://errorprone.info/bugpattern/PatternMatchingInstanceof) when possible
+- **NEVER** use fully qualified class names; ALWAYS add any required missing imports instead;
+  e.g. generate code using `new HashMap<>();` instead of `new java.util.HashMap<>();` etc.
+
+## Testing
+
+- If the project uses modern JUnit v5 (Jupiter) API, then do not prefix JUnit @Test methods with `test`, just use a descriptive name without the prefix.
+  Do use `test` prefixes on projects with older JUnit versions which still required this.
+- Use Google Truth instead of JUnit's own (or any other) assertions, where possible.
+  For testing that exceptions are thrown, use `org.junit.jupiter.api.Assertions.assertThrows` because Google Truth doesn't have an equivalent.
 
 ## Structure
 
