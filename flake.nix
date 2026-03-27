@@ -18,10 +18,7 @@
             pre-commit
           ];
           shellHook = ''
-            # Ensure pre-commit is installed
-            if [ ! -f .git/hooks/pre-commit ]; then
-              pre-commit install
-            fi
+            pre-commit install
           '';
         };
 
@@ -30,17 +27,25 @@
             buildInputs = [ pkgs.markdownlint-cli2 ];
           } ''
             cd ${self}
-            markdownlint-cli2 "**/*.md"
+            markdownlint-cli2 .
             touch $out
           '';
 
-          lychee = pkgs.runCommand "lychee" {
+          lychee-offline = pkgs.runCommand "lychee-offline" {
             buildInputs = [ pkgs.lychee ];
           } ''
             cd ${self}
-            # We skip external links in the flake check to avoid CI failures due to network issues or rate limiting
-            # but we can still check internal links.
-            lychee --offline "**/*.md"
+            lychee --offline .
+            touch $out
+          '';
+
+          # Optional online check, not enabled by default in 'nix flake check'
+          # if we want to keep CI fast/stable, but here it is for manual use.
+          lychee-online = pkgs.runCommand "lychee-online" {
+            buildInputs = [ pkgs.lychee ];
+          } ''
+            cd ${self}
+            lychee .
             touch $out
           '';
         };
