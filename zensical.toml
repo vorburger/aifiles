@@ -4,7 +4,7 @@
 site_name = "Vorburger.ch's Agentic AI Assistant"
 site_url = "https://ai.vorburger.ch"
 repo_url = "https://github.com/vorburger/aifiles"
-edit_uri = "blob/main/docs/"
+edit_uri = "edit/main/docs/"
 copyright = "Copyright &copy; 2025 Michael Vorburger.ch <https://www.vorburger.ch>"
 
 nav = [
