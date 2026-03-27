@@ -10,8 +10,12 @@ elif [ -f /proc/sys/kernel/apparmor_restrict_unprivileged_userns ] && [ "$(cat /
   # On modern systems like Ubuntu 24.04+, unprivileged userns are restricted by default.
   # We try to enable it if we have sudo privileges.
   echo "Info: Attempting to enable unprivileged user namespaces via sysctl..."
-  if sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 >/dev/null 2>&1 && unshare --user --map-root-user true 2>/dev/null; then
-    CAN_SANDBOX=true
+  if sudo -n sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 >/dev/null 2>&1; then
+    if unshare --user --map-root-user true 2>/dev/null; then
+      CAN_SANDBOX=true
+    fi
+  else
+    echo "Warning: Unable to modify kernel.apparmor_restrict_unprivileged_userns (no non-interactive sudo). Continuing without enabling unprivileged user namespaces."
   fi
 fi
 
@@ -84,7 +88,7 @@ fi
 # 5. Start Daemon (if not already managed by systemd/installer)
 if [ ! -e /nix/var/nix/daemon-socket/socket ]; then
   sudo pkill nix-daemon || true
-  sudo "$NIX_BIN-daemon" 2>&1 | sudo tee /tmp/nix-daemon.log > /dev/null &
+  sudo "$NIX_BIN-daemon" 2>&1 | sudo tee /var/log/nix-daemon.log > /dev/null &
   sleep 2
 fi
 
