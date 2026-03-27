@@ -35,10 +35,9 @@
             buildInputs = [ pkgs.lychee ];
           } ''
             cd ${self}
-            # We skip external links in the flake check to avoid CI failures due to network issues or rate limiting
-            # but we can still check internal links.
-            lychee # --offline
-              .
+            # TODO: investigate lychee caching (see TODO.md) before enabling external link checks here.
+            # For now, checks run without --offline so external links are validated.
+            lychee .
             touch $out
           '';
         };
