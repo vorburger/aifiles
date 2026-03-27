@@ -12,7 +12,7 @@ see [this blog article](https://github.com/vorburger/vorburger.ch-Notes/blob/dev
 
 See <!-- TODO https://ai.vorburger.ch, built from --> [`docs/`](docs/).
 
-## License [![CC BY 4.0][cc-by-shield]][cc-by].
+## License [![CC BY 4.0][cc-by-shield]][cc-by]
 
 This project is licensed under the [**Creative Commons Attribution 4.0 International License**][cc-by].
 

@@ -1,0 +1,5 @@
+config:
+  MD013: false # Line length
+  MD033: false # Inline HTML
+  MD024: false # Duplicate headers (some skills have same headers)
+  MD034: false # Bare URLs
