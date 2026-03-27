@@ -40,20 +40,23 @@ fi
 sudo mkdir -p /etc/nix
 if [ "$CAN_SANDBOX" = "true" ]; then
   echo "Info: Unprivileged user namespaces are supported. Nix sandboxing will remain enabled (default)."
-  # Ensure the custom config is empty if sandboxing is supported
   sudo tee /etc/nix/nix.custom.conf > /dev/null << 'CONF'
 # Nix sandboxing remains enabled because unprivileged user namespaces are supported.
+extra-experimental-features = nix-command flakes
 CONF
 else
   echo "Warning: Unprivileged user namespaces are NOT supported. Disabling Nix sandboxing and syscall filtering."
   cat << 'CONF' | sudo tee /etc/nix/nix.custom.conf > /dev/null
 sandbox = false
 filter-syscalls = false
+extra-experimental-features = nix-command flakes
 CONF
 fi
 
-if ! grep -q "experimental-features" /etc/nix/nix.conf 2>/dev/null; then
-  echo "extra-experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf > /dev/null
+# Ensure our custom config is actually included in the main nix.conf
+# (The Determinate Systems installer does this by default, but standard Nix does not)
+if ! grep -q "nix.custom.conf" /etc/nix/nix.conf 2>/dev/null; then
+  echo "!include nix.custom.conf" | sudo tee -a /etc/nix/nix.conf > /dev/null
 fi
 
 # 4. Start Daemon
