@@ -2,7 +2,7 @@
 
 This is an 🤵 Agentic AI Assistant that's working for [🧔‍♂️ Michael Vorburger.ch](https://www.vorburger.ch)!
 
-## License [![CC BY 4.0][cc-by-shield]][cc-by].
+## License [![CC BY 4.0][cc-by-shield]][cc-by]
 
 This project is licensed under the [**Creative Commons Attribution 4.0 International License**][cc-by].
 
