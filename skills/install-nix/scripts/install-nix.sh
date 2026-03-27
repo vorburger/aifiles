@@ -12,7 +12,15 @@ fi
 # 3. Ensure the Nix daemon is running (crucial for Docker/Codespaces without systemd)
 if [ ! -e /nix/var/nix/daemon-socket/socket ]; then
   echo "Starting nix-daemon..."
-  sudo /nix/var/nix/profiles/default/bin/nix-daemon > /tmp/nix-daemon.log 2>&1 &
+  if [ "$(id -u)" -eq 0 ]; then
+    /nix/var/nix/profiles/default/bin/nix-daemon > /tmp/nix-daemon.log 2>&1 &
+  elif command -v sudo >/dev/null 2>&1; then
+    sudo /nix/var/nix/profiles/default/bin/nix-daemon > /tmp/nix-daemon.log 2>&1 &
+  else
+    echo "Error: need root privileges to start nix-daemon, but 'sudo' is not available." >&2
+    echo "Please rerun this script as root or start /nix/var/nix/profiles/default/bin/nix-daemon manually." >&2
+    exit 1
+  fi
   sleep 2
 fi
 
