@@ -32,6 +32,7 @@
             markdownlint-cli2
             lychee
             pre-commit
+            git-lfs
             zensical
           ];
           shellHook = ''
