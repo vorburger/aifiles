@@ -1,6 +1,6 @@
 ---
 name: abbreviations
-description: Explains abbreviations used in this project, such as Model Context Protocol (MCP).
+description: Explains abbreviations used in this project, such as MCP.
 ---
 
 # Abbreviations
