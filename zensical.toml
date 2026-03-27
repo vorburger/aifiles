@@ -1,0 +1,46 @@
+# https://zensical.org
+
+[project]
+site_name = "Vorburger.ch's Agentic AI Assistant"
+site_url = "https://ai.vorburger.ch"
+repo_url = "https://github.com/vorburger/aifiles"
+edit_uri = "blob/main/docs/"
+copyright = "Copyright &copy; 2025 Michael Vorburger.ch <https://www.vorburger.ch>"
+
+nav = [
+  { "Home" = "index.md" },
+  { "Usage" = [
+    { "Install" = "install.md" },
+    { "Use" = "use.md" },
+  ]},
+  { "Development" = [
+    { "Files & Directory" = "files.md" },
+  ]},
+]
+
+[project.theme]
+logo = "images/logo.png"
+favicon = "images/logo.png"
+language = "en"
+features = [
+  "content.action.edit",
+  "content.code.copy",
+  "navigation.footer",
+  "navigation.instant",
+  "navigation.tracking",
+  "navigation.expand",
+  "navigation.path",
+  "navigation.top",
+  "navigation.tabs",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+scheme = "slate"
+toggle.icon = "material/brightness-7"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+scheme = "default"
+toggle.icon = "material/brightness-4"
+toggle.name = "Switch to dark mode"

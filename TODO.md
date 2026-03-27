@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] generate static website as Nix output, using https://zensical.org
+- [x] generate static website as Nix output, using https://zensical.org
 - [ ] host generated website on aifiles.vorburger.ch
 - [ ] move MD checks feom aifiles to nixfiles
 - [ ] Validate skills, e.g. with [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref#cli)

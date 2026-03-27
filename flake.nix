@@ -16,11 +16,23 @@
           exec ${pkgs.lychee}/bin/lychee --offline "$@"
         '';
 
+        # Build the static website using https://zensical.org
+        packages.website = pkgs.runCommand "aifiles-website" {
+          buildInputs = [ pkgs.zensical ];
+        } ''
+          cp -r ${self}/docs docs
+          chmod -R u+w docs
+          cp ${self}/zensical.toml zensical.toml
+          zensical build --clean
+          cp -r site $out
+        '';
+
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             markdownlint-cli2
             lychee
             pre-commit
+            zensical
           ];
           shellHook = ''
             pre-commit install
