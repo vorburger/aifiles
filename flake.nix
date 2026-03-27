@@ -4,15 +4,20 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    nixfiles.url = "github:vorburger/nixfiles";
     agentskills-src = {
       url = "github:agentskills/agentskills";
       flake = false;
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, flake-parts, agentskills-src, ... }:
+  outputs = inputs@{ self, nixpkgs, flake-parts, nixfiles, agentskills-src, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+
+      imports = [
+        inputs.nixfiles.flakeModules.lint
+      ];
 
       perSystem = { config, self', inputs', pkgs, system, ... }: {
         packages.skills-ref = pkgs.python311Packages.buildPythonApplication {
@@ -23,11 +28,6 @@
           build-system = with pkgs.python311Packages; [ hatchling ];
           dependencies = with pkgs.python311Packages; [ click strictyaml ];
         };
-
-        # Nix sandbox has no network access; this wrapper checks local links only.
-        packages.lychee-offline = pkgs.writeShellScriptBin "lychee-offline" ''
-          exec ${pkgs.lychee}/bin/lychee --offline "$@"
-        '';
 
         # Build the static website using https://zensical.org
         packages.website = pkgs.runCommand "aifiles-website" {
@@ -56,30 +56,6 @@
         };
 
         checks = {
-          markdownlint = pkgs.runCommand "markdownlint" {
-            buildInputs = [ pkgs.markdownlint-cli2 ];
-          } ''
-            cd ${self}
-            markdownlint-cli2 .
-            touch $out
-          '';
-
-          shellcheck = pkgs.runCommand "shellcheck" {
-            buildInputs = [ pkgs.shellcheck ];
-          } ''
-            cd ${self}
-            find . -name "*.sh" -not -path "./.direnv/*" -exec shellcheck {} +
-            touch $out
-          '';
-
-          lychee = pkgs.runCommand "lychee" {
-            buildInputs = [ self'.packages.lychee-offline pkgs.cacert ];
-          } ''
-            cd ${self}
-            lychee-offline .
-            touch $out
-          '';
-
           skills-validate = pkgs.runCommand "skills-validate" {
             buildInputs = [ self'.packages.skills-ref ];
           } ''
