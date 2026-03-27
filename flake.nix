@@ -21,6 +21,7 @@
             markdownlint-cli2
             lychee
             pre-commit
+            git-lfs
           ];
           shellHook = ''
             pre-commit install
