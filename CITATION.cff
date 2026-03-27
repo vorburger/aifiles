@@ -20,7 +20,7 @@ repository-code: "https://github.com/enola-dev/vorburger-ai-assistant"
 license: CC-BY-4.0
 url: "https://ai.vorburger.ch"
 date-released: 2025-02-22
-abstract: An AI Assistant using an agentic Agent Skills based AI assistant working for Michael Vorburger.ch, using the Enola.dev AI tool.
+abstract: An agentic AI assistant for Michael Vorburger.ch, built with Enola.dev and Agent Skills.
 keywords:
   - ADK
   - AI
