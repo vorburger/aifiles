@@ -12,7 +12,7 @@
 
       perSystem = { config, self', inputs', pkgs, system, ... }: {
         # Nix sandbox has no network access; this wrapper checks local links only.
-        packages.lychee-offline = pkgs.writeShellScriptBin "lychee" ''
+        packages.lychee-offline = pkgs.writeShellScriptBin "lychee-offline" ''
           exec ${pkgs.lychee}/bin/lychee --offline "$@"
         '';
 
@@ -40,7 +40,7 @@
             buildInputs = [ self'.packages.lychee-offline ];
           } ''
             cd ${self}
-            lychee .
+            lychee-offline .
             touch $out
           '';
         };
