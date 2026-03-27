@@ -5,4 +5,4 @@ description: Provides personal and professional information about Michael Vorbur
 
 # Vorburger Profile
 
-Detailed RDF data is available in [vorburger.ttl](vorburger.ttl).
+This skill provides information about Michael Vorburger. Detailed RDF data is available in [vorburger.ttl](vorburger.ttl).
