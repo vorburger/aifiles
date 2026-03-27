@@ -4,7 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixfiles.url = "github:vorburger/nixfiles";
+    nixfiles = {
+      url = "github:vorburger/nixfiles";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     agentskills-src = {
       url = "github:agentskills/agentskills";
       flake = false;
