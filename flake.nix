@@ -11,6 +11,11 @@
       systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
 
       perSystem = { config, self', inputs', pkgs, system, ... }: {
+        # Nix sandbox has no network access; this wrapper checks local links only.
+        packages.lychee-offline = pkgs.writeShellScriptBin "lychee" ''
+          exec ${pkgs.lychee}/bin/lychee --offline "$@"
+        '';
+
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             markdownlint-cli2
@@ -32,12 +37,10 @@
           '';
 
           lychee = pkgs.runCommand "lychee" {
-            buildInputs = [ pkgs.lychee ];
+            buildInputs = [ self'.packages.lychee-offline ];
           } ''
             cd ${self}
-            # Nix sandbox has no network access; --offline checks local links only.
-            # External link validation would need to run outside the Nix sandbox.
-            lychee --offline .
+            lychee .
             touch $out
           '';
         };
