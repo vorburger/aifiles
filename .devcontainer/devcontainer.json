@@ -1,5 +1,5 @@
 {
     "name": "aifiles",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
-    "postCreateCommand": ".devcontainer/bootstrap.sh"
+    // "postCreateCommand": ".devcontainer/bootstrap.sh"
 }
