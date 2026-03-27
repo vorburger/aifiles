@@ -3,6 +3,8 @@ name: dependency-management
 description: Procedures and requirements for adding new external dependencies.
 ---
 
+# dependency-management
+
 ## External Dependencies
 
 When adding any new external dependencies to the project — whether Maven/Gradle dependencies or plugins, or NPM/Bun packages — you MUST:
