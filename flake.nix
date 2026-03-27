@@ -78,7 +78,7 @@
             for skill in skills/*/; do
               if [ -d "$skill" ]; then
                 echo "Validating $skill"
-                skills-ref validate "$skill"
+                skills-ref validate "$skill" || exit 1
               fi
             done
             touch $out
