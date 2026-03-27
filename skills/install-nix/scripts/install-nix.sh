@@ -23,13 +23,34 @@ if [ ! -x "$NIX_BIN" ]; then
 fi
 
 # 3. Configure Nix
-# Minimal configuration for environments where seccomp/sandboxing is restricted.
-# We leverage the '!include nix.custom.conf' already in the default Determinate nix.conf.
+# Detect if we need to disable sandboxing/seccomp (common in restricted environments like some CI/VMs)
+# Nix sandboxing requires unprivileged user namespaces.
+CAN_SANDBOX=false
+if unshare --user --map-root-user true 2>/dev/null; then
+  CAN_SANDBOX=true
+elif [ -f /proc/sys/kernel/apparmor_restrict_unprivileged_userns ] && [ "$(cat /proc/sys/kernel/apparmor_restrict_unprivileged_userns)" = "1" ]; then
+  # On modern systems like Ubuntu 24.04+, unprivileged userns are restricted by default.
+  # We try to enable it if we have sudo privileges.
+  echo "Info: Attempting to enable unprivileged user namespaces via sysctl..."
+  if sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 >/dev/null 2>&1 && unshare --user --map-root-user true 2>/dev/null; then
+    CAN_SANDBOX=true
+  fi
+fi
+
 sudo mkdir -p /etc/nix
-cat << 'CONF' | sudo tee /etc/nix/nix.custom.conf > /dev/null
+if [ "$CAN_SANDBOX" = "true" ]; then
+  echo "Info: Unprivileged user namespaces are supported. Nix sandboxing will remain enabled (default)."
+  # Ensure the custom config is empty if sandboxing is supported
+  sudo tee /etc/nix/nix.custom.conf > /dev/null << 'CONF'
+# Nix sandboxing remains enabled because unprivileged user namespaces are supported.
+CONF
+else
+  echo "Warning: Unprivileged user namespaces are NOT supported. Disabling Nix sandboxing and syscall filtering."
+  cat << 'CONF' | sudo tee /etc/nix/nix.custom.conf > /dev/null
 sandbox = false
 filter-syscalls = false
 CONF
+fi
 
 if ! grep -q "experimental-features" /etc/nix/nix.conf 2>/dev/null; then
   echo "extra-experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf > /dev/null
