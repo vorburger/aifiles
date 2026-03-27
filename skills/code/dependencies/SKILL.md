@@ -1,3 +1,8 @@
+---
+name: code-dependencies
+description: Guidelines for evaluating and adding external dependencies (Maven, Gradle, NPM, etc.). Trigger when adding any new external library or plugin to a project.
+---
+
 ## External Dependencies
 
 When adding any new external dependencies to the project — whether Maven/Gradle dependencies or plugins, or NPM/Bun packages — you MUST:

@@ -1,1 +1,1 @@
-@./git-repos.md
+@./git-repos/SKILL.md

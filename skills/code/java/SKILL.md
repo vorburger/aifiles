@@ -1,3 +1,8 @@
+---
+name: code-java
+description: Java coding conventions for this project. Trigger when writing, reviewing, or refactoring Java code.
+---
+
 # Java Coding Conventions
 
 ## Java Version
