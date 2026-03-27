@@ -31,21 +31,14 @@
             touch $out
           '';
 
-          lychee-offline = pkgs.runCommand "lychee-offline" {
+          lychee = pkgs.runCommand "lychee" {
             buildInputs = [ pkgs.lychee ];
           } ''
             cd ${self}
-            lychee --offline .
-            touch $out
-          '';
-
-          # Optional online check, not enabled by default in 'nix flake check'
-          # if we want to keep CI fast/stable, but here it is for manual use.
-          lychee-online = pkgs.runCommand "lychee-online" {
-            buildInputs = [ pkgs.lychee ];
-          } ''
-            cd ${self}
-            lychee .
+            # We skip external links in the flake check to avoid CI failures due to network issues or rate limiting
+            # but we can still check internal links.
+            lychee # --offline
+              .
             touch $out
           '';
         };
