@@ -20,12 +20,14 @@ repository-code: "https://github.com/enola-dev/vorburger-ai-assistant"
 license: CC-BY-4.0
 url: "https://ai.vorburger.ch"
 date-released: 2025-02-22
-abstract: An AI Assistant using an agentic knowledge graph based AI assistant working for Michael Vorburger.ch, using the Enola.dev AI tool.
+abstract: An AI Assistant using an agentic Agent Skills based AI assistant working for Michael Vorburger.ch, using the Enola.dev AI tool.
 keywords:
   - ADK
   - AI
   - Agentic AI
   - Assistant
+  - Agent Skills
+  - agentskills.io
   - Knowledge Graph
   - Knowledge Graph AI
   - Knowledge Graph Assistant
@@ -36,9 +38,7 @@ keywords:
   - Markdown
   - Linked Data
   - linked-data
-  - knowledge-graph
-  - knowledge-base
-  - knowledge-representation
+  - skills
   - Java
   - Graphviz
   - Graph
