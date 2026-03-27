@@ -13,6 +13,7 @@ fi
 
 # 2. Source Nix profile (in case it's not in the PATH yet)
 if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+    # shellcheck source=/dev/null
     . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
 

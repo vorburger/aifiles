@@ -10,14 +10,15 @@ fi
 # 2. Find and source Nix
 # Source the Nix profile so 'nix' is available in the current shell
 if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+  # shellcheck source=/dev/null
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
 
 # Set NIX_BIN for use in starting the daemon if needed
-NIX_BIN=\$(command -v nix || echo "/nix/var/nix/profiles/default/bin/nix")
+NIX_BIN=$(command -v nix || echo "/nix/var/nix/profiles/default/bin/nix")
 
-if [ ! -x "\$NIX_BIN" ]; then
-  echo "Error: nix binary not found or not executable at \$NIX_BIN." >&2
+if [ ! -x "$NIX_BIN" ]; then
+  echo "Error: nix binary not found or not executable at $NIX_BIN." >&2
   false
 fi
 
@@ -37,12 +38,13 @@ fi
 # 4. Start Daemon
 if [ ! -e /nix/var/nix/daemon-socket/socket ]; then
   sudo pkill nix-daemon || true
-  sudo "\$NIX_BIN-daemon" > /tmp/nix-daemon.log 2>&1 &
+  sudo "$NIX_BIN-daemon" 2>&1 | sudo tee /tmp/nix-daemon.log > /dev/null &
   sleep 2
 fi
 
 # 5. Export Path
-export PATH="\$(dirname "\$NIX_BIN"):\$PATH"
+PATH="$(dirname "$NIX_BIN"):$PATH"
+export PATH
 
 # 6. Verify the installation
 nix --version

@@ -47,6 +47,7 @@
             pre-commit
             git-lfs
             zensical
+            shellcheck
             self'.packages.skills-ref
           ];
           shellHook = ''
@@ -60,6 +61,14 @@
           } ''
             cd ${self}
             markdownlint-cli2 .
+            touch $out
+          '';
+
+          shellcheck = pkgs.runCommand "shellcheck" {
+            buildInputs = [ pkgs.shellcheck ];
+          } ''
+            cd ${self}
+            find . -name "*.sh" -not -path "./.direnv/*" -exec shellcheck {} +
             touch $out
           '';
 
