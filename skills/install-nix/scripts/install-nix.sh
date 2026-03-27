@@ -56,7 +56,7 @@ fi
 
 # 5. Enable Flakes and the new Nix command
 mkdir -p ~/.config/nix
-if ! grep -q "experimental-features" ~/.config/nix/nix.conf 2>/dev/null; then
+if ! grep -q "^\s*experimental-features" ~/.config/nix/nix.conf 2>/dev/null; then
   echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 fi
 
