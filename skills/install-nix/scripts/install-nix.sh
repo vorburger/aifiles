@@ -44,11 +44,14 @@ fi
 # 4. Configure Fish shell for Nix (if fish is installed)
 if command -v fish >/dev/null 2>&1; then
   mkdir -p ~/.config/fish/conf.d
-  cat << 'EOF' > ~/.config/fish/conf.d/nix.fish
+  conf_file="${HOME}/.config/fish/conf.d/nix-daemon.fish"
+  if [ ! -e "${conf_file}" ]; then
+    cat << 'EOF' > "${conf_file}"
 if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
     source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
 end
 EOF
+  fi
 fi
 
 # 5. Enable Flakes and the new Nix command
