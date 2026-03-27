@@ -1,4 +1,9 @@
-# Java Coding Conventions
+---
+name: java-conventions
+description: Java coding, testing, and logging conventions.
+---
+
+# Java Conventions
 
 ## Java Version
 
