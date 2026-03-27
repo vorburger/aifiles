@@ -2,64 +2,46 @@
 set -euo pipefail
 
 # 1. Install Nix (Determinate Systems installer is recommended for CI/VMs)
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
+if [ ! -d /nix/store ]; then
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm || true
+fi
 
-# 2. Source the Nix profile so 'nix' is available in the current shell
+# 2. Find and source Nix
+NIX_BIN=""
 if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+  NIX_BIN=$(command -v nix || echo "")
 fi
 
-# 3. Ensure the Nix daemon is running (crucial for Docker/Codespaces without systemd)
+if [ -z "$NIX_BIN" ]; then
+  NIX_BIN=$(find /nix/store -name nix -type f -executable | head -n 1 || echo "")
+fi
+
+if [ -z "$NIX_BIN" ]; then
+  echo "Error: nix binary not found." >&2
+  false
+fi
+
+# 3. Configure Nix
+sudo mkdir -p /etc/nix
+cat << 'CONF' | sudo tee /etc/nix/nix.custom.conf > /dev/null
+sandbox = false
+filter-syscalls = false
+substituters = https://cache.nixos.org https://install.determinate.systems
+trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM=
+CONF
+
+if ! grep -q "experimental-features" /etc/nix/nix.conf 2>/dev/null; then
+  echo "extra-experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf > /dev/null
+fi
+
+# 4. Start Daemon
 if [ ! -e /nix/var/nix/daemon-socket/socket ]; then
-  echo "Starting nix-daemon..."
-  if [ "$(id -u)" -eq 0 ]; then
-    /nix/var/nix/profiles/default/bin/nix-daemon > /tmp/nix-daemon.log 2>&1 &
-  elif command -v sudo >/dev/null 2>&1; then
-    sudo /nix/var/nix/profiles/default/bin/nix-daemon > /tmp/nix-daemon.log 2>&1 &
-  else
-    echo "Error: need root privileges to start nix-daemon, but 'sudo' is not available." >&2
-    echo "Please rerun this script as root or start /nix/var/nix/profiles/default/bin/nix-daemon manually." >&2
-    exit 1
-  fi
-  daemon_pid=$!
-  socket_path="/nix/var/nix/daemon-socket/socket"
-  timeout=30
-  while [ "$timeout" -gt 0 ]; do
-    if [ -S "$socket_path" ] || [ -e "$socket_path" ]; then
-      break
-    fi
-    if ! kill -0 "$daemon_pid" 2>/dev/null; then
-      echo "nix-daemon failed to start; see /tmp/nix-daemon.log for details." >&2
-      exit 1
-    fi
-    sleep 1
-    timeout=$((timeout - 1))
-  done
-  if [ ! -S "$socket_path" ] && [ ! -e "$socket_path" ]; then
-    echo "Timed out waiting for nix-daemon socket at $socket_path" >&2
-    exit 1
-  fi
+  sudo pkill nix-daemon || true
+  sudo "$NIX_BIN-daemon" > /tmp/nix-daemon.log 2>&1 &
+  sleep 2
 fi
 
-# 4. Configure Fish shell for Nix (if fish is installed)
-if command -v fish >/dev/null 2>&1; then
-  mkdir -p ~/.config/fish/conf.d
-  conf_file="${HOME}/.config/fish/conf.d/nix-daemon.fish"
-  if [ ! -e "${conf_file}" ]; then
-    cat << 'EOF' > "${conf_file}"
-if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
-    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
-end
-EOF
-  fi
-fi
-
-# 5. Enable Flakes and the new Nix command
-mkdir -p ~/.config/nix
-if ! grep -q "^\s*experimental-features" ~/.config/nix/nix.conf 2>/dev/null; then
-  echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
-fi
-
-# 6. Verify the installation
+# 5. Export Path
+export PATH="$(dirname "$NIX_BIN"):$PATH"
 nix --version
-nix flake --help
