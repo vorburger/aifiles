@@ -37,7 +37,7 @@
           '';
 
           lychee = pkgs.runCommand "lychee" {
-            buildInputs = [ self'.packages.lychee-offline ];
+            buildInputs = [ self'.packages.lychee-offline pkgs.cacert ];
           } ''
             cd ${self}
             lychee-offline .
