@@ -35,9 +35,9 @@
             buildInputs = [ pkgs.lychee ];
           } ''
             cd ${self}
-            # TODO: investigate lychee caching (see TODO.md) before enabling external link checks here.
-            # For now, checks run without --offline so external links are validated.
-            lychee .
+            # Nix sandbox has no network access; --offline checks local links only.
+            # External link validation would need to run outside the Nix sandbox.
+            lychee --offline .
             touch $out
           '';
         };
