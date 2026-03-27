@@ -21,7 +21,24 @@ if [ ! -e /nix/var/nix/daemon-socket/socket ]; then
     echo "Please rerun this script as root or start /nix/var/nix/profiles/default/bin/nix-daemon manually." >&2
     exit 1
   fi
-  sleep 2
+  daemon_pid=$!
+  socket_path="/nix/var/nix/daemon-socket/socket"
+  timeout=30
+  while [ "$timeout" -gt 0 ]; do
+    if [ -S "$socket_path" ] || [ -e "$socket_path" ]; then
+      break
+    fi
+    if ! kill -0 "$daemon_pid" 2>/dev/null; then
+      echo "nix-daemon failed to start; see /tmp/nix-daemon.log for details." >&2
+      exit 1
+    fi
+    sleep 1
+    timeout=$((timeout - 1))
+  done
+  if [ ! -S "$socket_path" ] && [ ! -e "$socket_path" ]; then
+    echo "Timed out waiting for nix-daemon socket at $socket_path" >&2
+    exit 1
+  fi
 fi
 
 # 4. Configure Fish shell for Nix (if fish is installed)
