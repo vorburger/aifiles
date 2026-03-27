@@ -13,3 +13,5 @@
   - [ ] https://skills.sh/vercel-labs/skills/find-skills
   - [ ] https://skills.sh/coreyhaines31/marketingskills/seo-audit
   - [ ] https://skills.sh/browser-use/browser-use/browser-use
+- [ ] Turn https://docs.enola.dev/agents/git-commit/ into a skill here
+- [ ] Turn https://docs.enola.dev/agents/github-issue/ into a skill here
