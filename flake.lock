@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "agentskills-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774631561,
+        "narHash": "sha256-NH2QFx0IKJlx5H6+Egwcb+ERAMTNHTv+bI+BHPZkWfE=",
+        "owner": "agentskills",
+        "repo": "agentskills",
+        "rev": "5e7f3e2c4c9f5464fe342bf2fea72367a914e9b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "agentskills",
+        "repo": "agentskills",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -51,6 +67,7 @@
     },
     "root": {
       "inputs": {
+        "agentskills-src": "agentskills-src",
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs"
       }

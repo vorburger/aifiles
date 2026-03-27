@@ -15,3 +15,14 @@ After making any changes to the codebase, always run the following command to en
 ```bash
 nix flake check
 ```
+
+## Agent Skills Validation
+
+This project uses [Agent Skills](https://agentskills.io). All skills in the `skills/` directory are automatically validated during `nix flake check` using the `skills-ref` tool (fetched from `github:agentskills/agentskills`).
+
+The `skills-ref` package is also available in the default `devShell` for manual validation:
+
+```bash
+nix develop
+skills-ref validate skills/your-skill
+```
