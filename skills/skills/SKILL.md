@@ -3,6 +3,6 @@ name: skills
 description: Rules for Agent Skills files.
 ---
 
-# skills
+# Skills
 
-Agent `SKILL.md` files SHOULD always have a H1 heading equivalent to their `name` metadata.
+Agent `SKILL.md` files SHOULD always have a H1 heading that is a "prettier" (appropriately capitalized) version of their `name` metadata.
