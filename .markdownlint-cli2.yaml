@@ -3,3 +3,4 @@ config:
   MD033: false # Inline HTML
   MD024: false # Duplicate headers (some skills have same headers)
   MD034: false # Bare URLs
+  MD030: false # List marker space (conflicts with Prettier)
