@@ -41,7 +41,7 @@ theme:
     - navigation.instant
     - navigation.tracking
     - navigation.expand
-    - navigation.path
+    # - navigation.path
     - navigation.top
     # - navigation.sections
     - navigation.tabs

@@ -24,6 +24,8 @@ pre-commit:
     prettier:
       glob: "*.{ts,js,md,json,yaml,yml}"
       run: prettier --write {staged_files} && git add {staged_files}
+    generate-docs:
+      run: ./scripts/generate-skills-docs.ts && git add docs/skills/
 
 pre-push:
   commands:

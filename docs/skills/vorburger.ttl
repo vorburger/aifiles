@@ -1,0 +1,42 @@
+@prefix schema: <http://schema.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# TODO Avoid copy/paste from https://github.com/enola-dev/enola/blob/main/models/enola.dev.ttl ...
+
+<http://michael.vorburger.ch/me> a schema:Person ;
+    schema:name "Michael Vorburger" ;
+    schema:givenName "Michael" ;
+    schema:familyName "Vorburger" ;
+    # schema:email "TODO@vorburger.ch" ;
+    schema:url "https://www.vorburger.ch" ;
+    schema:jobTitle "Software Engineer" ;
+    schema:worksFor [
+        a schema:Organization ;
+        schema:name "Google"
+    ] ;
+    schema:knows <http://dbpedia.org/resource/Artificial_intelligence> ;
+    schema:knows <http://dbpedia.org/resource/Software_engineering> ;
+    schema:knows <http://dbpedia.org/resource/DevOps> ;
+    rdfs:comment "This RDF describes Michael Vorburger, a software engineer with interests in AI, software engineering, and DevOps." ;
+
+    schema:subjectOf     <https://www.vorburger.ch> ;
+    schema:identifier    <https://www.vorburger.ch> ;
+    schema:description   "Michael is an avid open source hacker, and an EPFL alumni. As of early 2024 he is employed by Google, but his open source work is personal.";
+    schema:alternateName "Michael Vorburger.ch" ;
+    schema:image         <https://www.vorburger.ch/michael_vorburger_portrait_in_bay_of_roses_spain_with_bad_lighting.jpg> ;
+    schema:email         "figure-it-out@vorburger.ch" ;
+    schema:member        <https://enola.dev#organization> ;
+    schema:funder        <https://enola.dev#organization> ;
+    schema:affiliation   <https://enola.dev#organization>, <https://www.apache.org/>, <https://www.google.com/> ;
+    schema:worksFor      <https://www.google.com/> ;
+    schema:alumniOf      <https://www.epfl.ch/> ;
+    schema:birthPlace    <https://www.ch.ch/> ; # TODO What's a better IRI for Switzerland?!
+    schema:sameAs        <https://github.com/vorburger> ;
+    schema:sameAs        <https://ch.linkedin.com/in/vorburger> ;
+    schema:sameAs        <https://www.youtube.com/user/mvorburger> ;
+    schema:sameAs        <https://bsky.app/profile/vorburger.ch> ;
+    schema:sameAs        <https://tooting.ch/@vorburger> ;
+    schema:sameAs        <https://twitter.com/vorburger> ;
+    schema:sameAs        <https://scholar.google.com/citations?user=OXGdbawAAAAJ> ;
+    schema:sameAs        <https://orcid.org/0009-0001-4017-9397> ;
+.
