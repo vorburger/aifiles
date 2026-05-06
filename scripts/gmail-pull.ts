@@ -7,7 +7,7 @@ import { join, basename } from "path";
 const [filter, baseDir] = process.argv.slice(2);
 
 if (!filter || !baseDir) {
-  console.error("Usage: gmail-pull <filter> <base_dir>");
+  console.error("Usage: scripts/gmail-pull.ts <filter> <base_dir>");
   process.exit(1);
 }
 
@@ -34,12 +34,16 @@ async function runGws(args: string[], retries = 3): Promise<string> {
     lastError = { exitCode, stderr };
     if (i < retries - 1) {
       const delay = Math.pow(2, i) * 1000;
-      console.warn(`gws failed (attempt ${i + 1}/${retries}), retrying in ${delay}ms...`);
+      console.warn(
+        `gws failed (attempt ${i + 1}/${retries}), retrying in ${delay}ms...`,
+      );
       await Bun.sleep(delay);
     }
   }
 
-  console.error(`gws failed after ${retries} attempts. Status: ${lastError.exitCode}, Stderr: ${lastError.stderr}`);
+  console.error(
+    `gws failed after ${retries} attempts. Status: ${lastError.exitCode}, Stderr: ${lastError.stderr}`,
+  );
   throw new Error(`gws failed with status ${lastError.exitCode}`);
 }
 
@@ -140,7 +144,7 @@ async function processMessage(id: string) {
   ]);
 
   const message = JSON.parse(messageOutput);
-  
+
   // Save YAML
   const yamlContent = await runYq(messageOutput, ["eval", "-P", "-o", "yaml"]);
   writeFileSync(yamlPath, yamlContent);
@@ -161,7 +165,9 @@ async function processMessage(id: string) {
     const attachDir = join(baseDir, "attachments", id);
     mkdirSync(attachDir, { recursive: true });
     for (const att of attachments) {
-      console.log(`  Downloading attachment ${att.filename} (${att.partId})...`);
+      console.log(
+        `  Downloading attachment ${att.filename} (${att.partId})...`,
+      );
       const attOutput = await runGws([
         "gmail",
         "users",
@@ -240,7 +246,7 @@ async function main() {
   console.log("Done!");
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err);
   process.exit(1);
 });

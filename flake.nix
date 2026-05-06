@@ -51,13 +51,15 @@
             markdownlint-cli2
             lychee
             pre-commit
+            lefthook
+            prettier
             git-lfs
             zensical
             shellcheck
             self'.packages.skills-ref
           ];
           shellHook = ''
-            pre-commit install
+            lefthook install > /dev/null 2>&1
           '';
         };
 

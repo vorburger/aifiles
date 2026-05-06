@@ -12,6 +12,7 @@ This skill describes Michael Vorburger's preferred style for Git commit messages
 Use Conventional Commits format where applicable: `<type>(<scope>): <description>`
 
 Common types:
+
 - `feat`: If it looks like any sort of new feature is introduced, even minor.
 - `fix`: If it's clearly more of a sort of minor fix.
 - `docs`: If only files in the `docs/` directory changed, and no files outside of it.

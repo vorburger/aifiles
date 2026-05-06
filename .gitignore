@@ -1,6 +1,10 @@
 # Nix & direnv
 # TODO https://github.com/direnv/direnv/issues/1434
-.direnv/
+/.direnv/
+
+# Bun
+/node_modules/
+/tsconfig.tsbuildinfo
 
 # Zensical static site build output
-site/
+/site/

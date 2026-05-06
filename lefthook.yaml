@@ -1,0 +1,32 @@
+# Lefthook configuration
+# See: https://github.com/evilmartians/lefthook
+
+pre-commit:
+  commands:
+    type-check:
+      run: bun x tsc --noEmit
+    # lint:
+    #   glob: "*.{ts,js}"
+    #   run: bun x eslint {staged_files} --max-warnings 0
+    # test:
+    #   run: bun test
+
+    # Smart checks: only on staged files
+    markdownlint:
+      glob: "*.md"
+      run: markdownlint-cli2 {staged_files}
+    shellcheck:
+      glob: "*.sh"
+      run: shellcheck {staged_files}
+    skills-validate:
+      glob: "skills/*/SKILL.md"
+      run: for f in {staged_files}; do skills-ref validate $(dirname $f); done
+    prettier:
+      glob: "*.{ts,js,md,json,yaml,yml}"
+      run: prettier --write {staged_files} && git add {staged_files}
+
+pre-push:
+  commands:
+    # Thorough check before pushing
+    nix-flake-check:
+      run: nix flake check --print-build-logs

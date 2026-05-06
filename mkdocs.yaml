@@ -12,6 +12,8 @@ nav:
   - Usage:
       - Install: install.md
       - Use: use.md
+ - Scripts:
+      - Gmail: docs/google/workspace/mail.md
   - Development:
       # TODO - Contributing: development/contributing.md
       - Files & Directory: files.md
