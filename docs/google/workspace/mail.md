@@ -25,7 +25,10 @@ scripts/gmail-pull.ts "from:github" data/gmail
 
 The script creates the following structure in the base directory:
 
-- **`index.yaml`**: A mapping of search filters to the list of message IDs found.
+- **`index.yaml`**: A mapping of search filters to the list of **Thread IDs** found.
+- **`threads/`**:
+  - `<thread-id>.yaml`: The full Gmail thread resource in YAML format.
+  - `<thread-id>.md`: A consolidated Markdown file containing all messages in the thread, optimized for LLM context.
 - **`messages/`**:
   - `<message-id>.yaml`: The full Gmail message resource in YAML format.
   - `<message-id>.txt`: The plain text body of the email (if available).
@@ -37,9 +40,10 @@ The script creates the following structure in the base directory:
 
 ## Features
 
-- **Parallel Downloads**: Downloads multiple messages concurrently for speed.
+- **Thread-Oriented**: Groups messages into conversations, ensuring LLM agents have full context of replies and discussions.
+- **Parallel Downloads**: Downloads multiple threads concurrently for speed.
 - **Idempotent**: Skips messages that have already been downloaded (based on the presence of the `.yaml` file).
-- **Deterministic**: Message IDs in `index.yaml` are sorted to maintain a consistent file structure.
+- **Deterministic**: IDs in `index.yaml` are sorted to maintain a consistent file structure.
 - **Safe Attachment Naming**: Uses both `partId` and `filename` to avoid conflicts within a single email.
 
 ## Dependencies
