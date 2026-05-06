@@ -46,6 +46,8 @@
 
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
+            bun
+            yq-go
             markdownlint-cli2
             lychee
             pre-commit
