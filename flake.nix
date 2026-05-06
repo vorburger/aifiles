@@ -50,7 +50,6 @@
             yq-go
             markdownlint-cli2
             lychee
-            pre-commit
             lefthook
             prettier
             git-lfs

@@ -4,9 +4,11 @@
 
 These are the personal `aifiles` of [🧔‍♂️ Michael Vorburger.ch](https://www.vorburger.ch).
 
-`aifiles` are like [`dotfiles`](https://github.com/vorburger/vorburger-dotfiles-bin-etc),
-just but for LLMs instead of UNIX tools' configurations;
-see [this blog article](https://github.com/vorburger/vorburger.ch-Notes/blob/develop/ml/vorburger-ai-git-memory.md).
+`aifiles` are like [`dotfiles`](https://github.com/vorburger/dotfiles), but for LLMs instead of UNIX tools' configurations.
+
+**This repository serves as the central hub for global AI context, instructions, and skills applied across ALL of Michael's other repositories and projects.**
+
+See [this blog article](https://github.com/vorburger/vorburger.ch-Notes/blob/develop/ml/vorburger-ai-git-memory.md) for more background.
 
 ## Documentation ℹ️
 

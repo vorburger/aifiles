@@ -16,7 +16,9 @@ scripts/gmail-pull.ts "<gmail-filter>" <base_directory>
 ### Examples
 
 ```bash
-scripts/gmail-pull.ts "from:github" ./data/github-emails
+scripts/gmail-pull.ts "in:inbox is:important after:2026/4/6 before:2026/6/7" data/gmail
+
+scripts/gmail-pull.ts "from:github" data/gmail
 ```
 
 ## Output Structure

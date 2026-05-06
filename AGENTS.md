@@ -1,6 +1,17 @@
 # Agents
 
-This repository uses Nix for dependency management and environment reproducibility.
+## Purpose
+
+This repository, `aifiles`, is the central hub for global AI context, instructions, and skills applied across **all** of Michael Vorburger's repositories and projects. It serves a similar role to "dotfiles" but for LLMs and agents.
+
+When working in this repository, keep in mind that skills here are intended to be globally applicable unless stated otherwise.
+
+## Repository Structure
+
+- `scripts/`: Executable TypeScript scripts (using `#!/usr/bin/env bun`).
+- `skills/`: Global agent skills (following [Agent Skills](https://agentskills.io) conventions).
+- `docs/`: Documentation for the `aifiles` system.
+- `flake.nix`: Nix environment for development and CI.
 
 ## Nix Environment Setup
 
