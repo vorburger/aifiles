@@ -1,5 +1,6 @@
 # TODO
 
+- [ ] Mail Agent
 - [ ] Move MD checks from aifiles to nixfiles
 - [ ] Tooling to work on a ToDo.. create branch, delegate to Jules -OR- create branch, send prompt locally and commit with message and raise PR
 - [ ] Make Jules take Code Review feedback comments from Copilot and Gemini Code Review into account and iterate on them?
@@ -8,7 +9,7 @@
 - [ ] Turn https://docs.enola.dev/agents/github-issue/ into a skill here
 - [ ] Intro a /squash skill that makes "nice" commit messages. Make it available as a Bot on GitHub PRs as slash command!
 - [x] Generate static website as Nix output, using https://zensical.org
-- [ ] Host generated website on aifiles.vorburger.ch
+- [ ] Set up GitHub Actions CI to deploy the website to GitHub pages served on https://aifiles.vorburger.ch
 - [ ] Investigate if `lychee` caches external link validation results.
   - [ ] Determine how to activate and configure caching for 24 hours.
   - [ ] If `lychee` doesn't support 24h caching, file a Feature Request (FR).
@@ -18,3 +19,4 @@
   - [ ] https://skills.sh/vercel-labs/skills/find-skills
   - [ ] https://skills.sh/coreyhaines31/marketingskills/seo-audit
   - [ ] https://skills.sh/browser-use/browser-use/browser-use
+- [ ] Prompting both "Who is Michael" but then later even also "Who am I" should return the `vorburger.ttl` info
