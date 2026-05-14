@@ -26,6 +26,7 @@ nav = [
     { "Java Conventions" = "skills/java-conventions.md" },
     { "Markdown Conventions" = "skills/markdown-conventions.md" },
     { "Nix" = "skills/nix.md" },
+    { "Nix Update" = "skills/nix-update.md" },
     { "Preferred Tools" = "skills/preferred-tools.md" },
     { "Scripting Conventions" = "skills/scripting.md" },
     { "Skills" = "skills/skills.md" },

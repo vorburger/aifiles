@@ -13,6 +13,7 @@ These are the skills available to AI agents in this project.
 - [Java Conventions](java-conventions.md): Java coding, testing, and logging conventions.
 - [Markdown Conventions](markdown-conventions.md): Conventions for Markdown files in this repository.
 - [Nix](nix.md): Use Nix Flakes and flake-parts for software package management.
+- [Nix Update](nix-update.md): Update Nix flake inputs.
 - [Preferred Tools](preferred-tools.md): Preferred tools for common tasks like linting and link checking.
 - [Scripting Conventions](scripting.md): Conventions for writing and executing scripts (TS, Bash, etc.).
 - [Skills](skills.md): Rules for Agent Skills files.
