@@ -23,6 +23,7 @@ description: Java coding, testing, and logging conventions.
   Do use `test` prefixes on projects with older JUnit versions which still required this.
 - Use Google Truth instead of JUnit's own (or any other) assertions, where possible.
   For testing that exceptions are thrown, use `org.junit.jupiter.api.Assertions.assertThrows` because Google Truth doesn't have an equivalent.
+- Refer to the `testing` skill for how to execute the tests for the project.
 
 ## Structure
 

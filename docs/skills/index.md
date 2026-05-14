@@ -17,5 +17,6 @@ These are the skills available to AI agents in this project.
 - [Preferred Tools](preferred-tools.md): Preferred tools for common tasks like linting and link checking.
 - [Scripting Conventions](scripting.md): Conventions for writing and executing scripts (TS, Bash, etc.).
 - [Skills](skills.md): Rules for Agent Skills files.
+- [Testing Projects](testing.md): Guidelines for determining how to test a project based on its contents.
 - [TypeScript & Code Conventions](typescript-conventions.md): Enforces TypeScript and project-specific coding standards, including Bun usage and the zero-warning policy. Use this skill when creating or modifying any TypeScript or configuration files.
 - [Vorburger Profile](vorburger-profile.md): Provides personal and professional information about Michael Vorburger.

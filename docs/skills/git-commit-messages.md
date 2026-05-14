@@ -32,3 +32,4 @@ Files under a directory named `skills/` containing `name:` and `description:` YA
 - Use the imperative mood in the subject line (e.g., "Add feature" instead of "Added feature").
 - Use the body to explain what and why, vs. how.
 - Do not end the subject line with a dot.
+- Before creating a commit, test the repository. Refer to the `testing` skill for how to test.

@@ -30,6 +30,7 @@ nav = [
     { "Preferred Tools" = "skills/preferred-tools.md" },
     { "Scripting Conventions" = "skills/scripting.md" },
     { "Skills" = "skills/skills.md" },
+    { "Testing Projects" = "skills/testing.md" },
     { "TypeScript & Code Conventions" = "skills/typescript-conventions.md" },
     { "Vorburger Profile" = "skills/vorburger-profile.md" }
     ]},

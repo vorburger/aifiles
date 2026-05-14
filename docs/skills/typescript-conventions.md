@@ -24,4 +24,5 @@ After making any changes, you **MUST** validate the project using the available 
 
 1. **Type Checking**: Run `bun x tsc --noEmit` to ensure TypeScript types are correct.
 2. **Standard Checks**: Run `nix flake check` or `bun run check` (whichever is available in the specific project).
-3. **Hooks**: You can also run `lefthook run pre-commit` if applicable.
+3. **Testing**: Run tests based on the `testing` skill guidelines.
+4. **Hooks**: You can also run `lefthook run pre-commit` if applicable.
