@@ -25,6 +25,7 @@ nav = [
     { "Install Nix" = "skills/install-nix.md" },
     { "Java Conventions" = "skills/java-conventions.md" },
     { "Markdown Conventions" = "skills/markdown-conventions.md" },
+    { "MCP Sync" = "skills/mcp-sync.md" },
     { "Nix" = "skills/nix.md" },
     { "Nix Update" = "skills/nix-update.md" },
     { "Preferred Tools" = "skills/preferred-tools.md" },

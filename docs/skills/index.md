@@ -12,6 +12,7 @@ These are the skills available to AI agents in this project.
 - [Install Nix](install-nix.md): Install Nix package manager on the system
 - [Java Conventions](java-conventions.md): Java coding, testing, and logging conventions.
 - [Markdown Conventions](markdown-conventions.md): Conventions for Markdown files in this repository.
+- [MCP Sync](mcp-sync.md): Use this skill when adding or modifying Model Context Protocol (MCP) server configurations to ensure they are synchronized across different tool settings.
 - [Nix](nix.md): Use Nix Flakes and flake-parts for software package management.
 - [Nix Update](nix-update.md): Update Nix flake inputs.
 - [Preferred Tools](preferred-tools.md): Preferred tools for common tasks like linting and link checking.
