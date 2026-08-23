@@ -49,6 +49,15 @@ description: Java coding, testing, and logging conventions.
   annotations - except on both interfaces and for enum values, where they ARE required. (If a project's build
   tool configuration is missing whatever that tool's way to use `-parameters` is, then enable it.)
 
+## Library Documentation and API Discovery
+
+When you need to look up public APIs, method signatures, Javadocs, or usage examples for external Java libraries (such as Maven Central dependencies):
+
+1. **Context7 MCP**: First use the `resolve-library-id` and `query-docs` MCP tools to find documentation, code snippets, and usage patterns.
+2. **javadoc.io**: Use `read_url_content` to fetch class documentation from `https://www.javadoc.io/static/<groupId>/<artifactId>/<version>/...` (e.g. `allclasses-index.html`, package summaries, or class Javadocs).
+3. **Source Inspection**: If you need to understand internal implementation details, look for the `-sources.jar` or view the upstream GitHub repository (via GitHub MCP or web).
+4. **Bytecode Disassembly Anti-pattern**: **NEVER** run `javap` or complex `grep` pipelines against cached `.jar` files in `~/.gradle/caches` to discover Java APIs or method signatures.
+
 ## Other
 
 - Uses ErrorProne for static analysis; follow it recommendations
