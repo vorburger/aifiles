@@ -4,10 +4,10 @@
 pre-commit:
   commands:
     type-check:
-      run: bun x tsc --noEmit
+      run: bun x --bun tsc --noEmit
     # lint:
     #   glob: "*.{ts,js}"
-    #   run: bun x eslint {staged_files} --max-warnings 0
+    #   run: bun x --bun eslint {staged_files} --max-warnings 0
     # test:
     #   run: bun test
 

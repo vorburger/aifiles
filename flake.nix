@@ -59,6 +59,7 @@
           ];
           shellHook = ''
             lefthook install > /dev/null 2>&1
+            bun install > /dev/null 2>&1
           '';
         };
 
