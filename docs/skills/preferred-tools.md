@@ -6,7 +6,7 @@ To maintain consistency across the project, the following tools are preferred fo
 
 - **Markdown Validation**: Use `markdownlint-cli2` for validating Markdown syntax.
 - **Link Checking**: Use `lychee` for detecting broken internal and external links. It supports caching results to improve performance.
-- **Git Hooks**: Use the `lefthook` framework via `lefthook.yaml` to run validations (like `prettier`, `markdownlint`, `shellcheck`, etc.) before each commit and push.
+- **Git Hooks**: Use the `lefthook` framework via `lefthook.yaml` to run validations (like `prettier`, `markdownlint`, `shellcheck`, `lychee`, etc.) before each commit.
 - **Formatting**: Use `prettier` for formatting Markdown, JSON, YAML, and TypeScript files. This is automatically managed via `lefthook` on staged files.
 - **Library & Framework Documentation**: Prefer the **Context7 MCP tool** (`resolve-library-id` followed by `query-docs`) over web search for fetching up-to-date documentation and code examples for external libraries and frameworks.
 

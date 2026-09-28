@@ -52,7 +52,6 @@
             lychee
             lefthook
             prettier
-            git-lfs
             zensical
             shellcheck
             self'.packages.skills-ref

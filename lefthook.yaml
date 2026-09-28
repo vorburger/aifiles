@@ -1,8 +1,17 @@
 # Lefthook configuration
 # See: https://github.com/evilmartians/lefthook
 
+skip_lfs: true
+
 pre-commit:
   commands:
+    generate-docs:
+      priority: 1
+      run: ./scripts/generate-skills-docs.ts && git add docs/skills/
+    prettier:
+      priority: 2
+      glob: "*.{ts,js,md,json,yaml,yml}"
+      run: prettier --write {staged_files} && git add {staged_files}
     type-check:
       run: bun x --bun tsc --noEmit
     # lint:
@@ -21,14 +30,8 @@ pre-commit:
     skills-validate:
       glob: "skills/*/SKILL.md"
       run: for f in {staged_files}; do skills-ref validate $(dirname $f); done
-    prettier:
-      glob: "*.{ts,js,md,json,yaml,yml}"
-      run: prettier --write {staged_files} && git add {staged_files}
-    generate-docs:
-      run: ./scripts/generate-skills-docs.ts && git add docs/skills/
-
-pre-push:
-  commands:
-    # Thorough check before pushing
+    lychee:
+      run: lychee --offline .
     nix-flake-check:
+      glob: "{flake.nix,flake.lock,zensical.toml}"
       run: nix flake check --print-build-logs
