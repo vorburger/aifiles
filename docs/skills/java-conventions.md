@@ -20,6 +20,7 @@
   Do use `test` prefixes on projects with older JUnit versions which still required this.
 - Use Google Truth instead of JUnit's own (or any other) assertions, where possible.
   For testing that exceptions are thrown, use `org.junit.jupiter.api.Assertions.assertThrows` because Google Truth doesn't have an equivalent.
+- Always annotate methods (whether `static` or not) with `@VisibleForTesting` (`com.google.common.annotations.VisibleForTesting`) whenever they are not marked `private` (e.g. package-private) so that they can be tested.
 - Refer to the `testing` skill for how to execute the tests for the project.
 
 ## Structure

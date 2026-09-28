@@ -10,7 +10,7 @@ In Michael's TypeScript projects, we exclusively use **Bun** for all package man
 
 - Install dependencies: `bun add <package>`
 - Run scripts: `bun run <script>`
-- Execute one-off tools: `bun x <command>`
+- Execute one-off tools: `bun x --bun <command>`
 
 ## Philosophy on Warnings
 
@@ -22,7 +22,7 @@ All automated tools (TypeScript compiler, linting, etc.) **MUST** be configured 
 
 After making any changes, you **MUST** validate the project using the available tooling, typically:
 
-1. **Type Checking**: Run `bun x tsc --noEmit` to ensure TypeScript types are correct.
+1. **Type Checking**: Run `bun x --bun tsc --noEmit` to ensure TypeScript types are correct.
 2. **Standard Checks**: Run `nix flake check` or `bun run check` (whichever is available in the specific project).
 3. **Testing**: Run tests based on the `testing` skill guidelines.
 4. **Hooks**: You can also run `lefthook run pre-commit` if applicable.

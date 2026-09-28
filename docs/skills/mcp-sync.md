@@ -5,9 +5,9 @@
 To ensure a consistent experience across different AI tools (like VS Code Copilot and Antigravity), MCP servers are configured in the following locations:
 
 1. **VS Code / Copilot**: `dotfiles/code/mcp.json`
-   - Format: Standard MCP JSON configuration within the `servers` object.
+   * Format: Standard MCP JSON configuration within the `servers` object.
 2. **Antigravity**: `nixfiles/modules/tools/antigravity.nix`
-   - Format: Managed declaratively via NixOS home-manager activation, generating `~/.gemini/config/mcp_config.json` with secrets management and symlinking to `~/.gemini/antigravity/` and `~/.gemini/antigravity-ide/`.
+   * Format: Managed declaratively via NixOS home-manager activation, generating `~/.gemini/config/mcp_config.json` with secrets management and symlinking to `~/.gemini/antigravity/` and `~/.gemini/antigravity-ide/`.
 
 ## Workflow
 
