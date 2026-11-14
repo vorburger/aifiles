@@ -13,6 +13,7 @@
 - Use [pattern-matching `instanceof`](https://errorprone.info/bugpattern/PatternMatchingInstanceof) when possible
 - **NEVER** use fully qualified class names; ALWAYS add any required missing imports instead;
   e.g. generate code using `new HashMap<>();` instead of `new java.util.HashMap<>();` etc.
+  *(Only exception: inside a thin facade/wrapper class that intentionally shares the simple name of an upstream library class, e.g., `dev.enola.common.sentry.Sentry` referencing `io.sentry.Sentry`.)*
 
 ## Testing
 
@@ -28,6 +29,7 @@
 - Name unused variables `_` instead of `unused`
 - Use `var` for local variable declarations where the type is obvious from the right-hand side
 - Every new package must contain a package-info.java file with a package description and @NullMarked.
+- Class naming: only use Guava-style plural `-s` names (`Strings`, `Lists`, `Threads`, `AutoCloseables`) for utility classes containing static helpers for instances of a countable noun type. Do not pluralize proper nouns, singleton integrations, or subsystem facades (`Sentry`, `Micrometer`, `Logging` — not `Sentrys`).
 
 ## Logging
 
