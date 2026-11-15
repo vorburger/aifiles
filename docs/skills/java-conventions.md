@@ -13,7 +13,7 @@
 - Use [pattern-matching `instanceof`](https://errorprone.info/bugpattern/PatternMatchingInstanceof) when possible
 - **NEVER** use fully qualified class names; ALWAYS add any required missing imports instead;
   e.g. generate code using `new HashMap<>();` instead of `new java.util.HashMap<>();` etc.
-  *(Only exception: inside a thin facade/wrapper class that intentionally shares the simple name of an upstream library class, e.g., `dev.enola.common.sentry.Sentry` referencing `io.sentry.Sentry`.)*
+  _(Only exception: inside a thin facade/wrapper class that intentionally shares the simple name of an upstream library class, e.g., `dev.enola.common.sentry.Sentry` referencing `io.sentry.Sentry`.)_
 
 ## Testing
 
